@@ -6,3 +6,5 @@ export * from './RegionManue';
 export * from './CountryCard';
 export * from './CountriesList';
 export * from "./EmptySearch";
+export * from "./Loading";
+export * from "./Error";

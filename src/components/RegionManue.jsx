@@ -7,8 +7,22 @@ const options = [
   { value: "europe", label: "Europe" },
   { value: "oceania", label: "Oceania" },
 ];
+function filterList(val, list) {
+  console.log(Array.isArray(list));
+  return list.filter((obj) => {
+    return obj.region === val;
+  });
+}
 
-export function RegionMenue() {
+export function RegionMenue({ countriesList, filterCountries }) {
+  function selectOptionHandler(e) {
+    console.log(e.label);
+    if (e.label == "All regions") {
+      filterCountries([...countriesList]);
+      return;
+    }
+    filterCountries(filterList(e.label, countriesList));
+  }
   return (
     <Select
       options={options}
@@ -21,6 +35,7 @@ export function RegionMenue() {
         option: () => "hover:!text-gray-800",
         menu: () => "bg-gray-100 dark:bg-gray-800 dark:text-gray-100",
       }}
+      onChange={selectOptionHandler}
     />
   );
 }
