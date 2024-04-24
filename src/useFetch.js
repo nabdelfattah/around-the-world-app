@@ -1,6 +1,3 @@
-// if we repeat a logic and it has state: create a custom hook
-// if the repeated logic doesn't have state: just create a helper function
-
 import { useEffect, useState } from "react";
 
 export function useFetch(url) {
@@ -19,12 +16,10 @@ export function useFetch(url) {
       setIsError(false)
     } else {
       fetchData()
-      // countriesList.length && localStorage.setItem('countriesList', JSON.stringify(countriesList))
     }
   }
 
   async function fetchData() {
-    // while using fetch() we should handle: Error state, Loading state
     try {
       setIsLoading(true);
       const response = await fetch(url);
@@ -33,7 +28,6 @@ export function useFetch(url) {
       setCountriesList(data);
       setFilteredList(data);
       if (!url.includes('name')) {
-        // HomePage
         localStorage.setItem('countriesList', JSON.stringify(data))
       }
     } catch (err) {

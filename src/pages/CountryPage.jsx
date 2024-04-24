@@ -10,9 +10,6 @@ export function CountryPage() {
     filteredList: result,
   } = useFetch(`https://restcountries.com/v3.1/name/${country.toLowerCase()}`);
 
-  // DISCLAIMER: you can't nest <> inside <>. see line 20
-  // we use optional chaning to avoind errors (svg is not defined). because on the first mount, the componenet doesn't get its data yet.
-
   return (
     <>
       {isError && <Error msg={`The data for ${country} is not available.`} />}

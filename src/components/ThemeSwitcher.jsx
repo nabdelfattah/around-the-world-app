@@ -7,7 +7,6 @@ export function SwitchTheme() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    // retrieve theme from local storage
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme) {
       setIsDark(storedTheme === "dark");
@@ -17,7 +16,6 @@ export function SwitchTheme() {
 
   function toggleThemeHandler(e) {
     const isDarkTheme = e.currentTarget.name === "dark";
-    // update state, storage, UI
     setIsDark(isDarkTheme);
     localStorage.setItem("theme", e.currentTarget.name);
     document.documentElement.className = isDarkTheme && "dark";
@@ -26,7 +24,7 @@ export function SwitchTheme() {
   return (
     <div
       title="Theme"
-      className="flex w-14 h-8 items-center justify-around  rounded-full bg-[#2e2f33] dark:bg-black"
+      className="flex h-8 w-14 items-center justify-around  rounded-full bg-[#2e2f33] dark:bg-black"
     >
       <button
         className={`${ACTIVE_CIRCLE_STYLE} ${!isDark && "bg-white"}`}
