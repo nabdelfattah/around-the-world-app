@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export function CountryCard({ name, population, region, capital, flag }) {
   return (
-    <a href={"#"}>
+    <Link to={`/countries/${name.toLowerCase()}`}>
       <div className="h-full rounded bg-gray-50 p-3 pb-9 shadow-md dark:bg-gray-800 lg:w-[264px]">
         <img
           className="mb-4 h-40 w-full rounded-md"
@@ -26,6 +26,6 @@ export function CountryCard({ name, population, region, capital, flag }) {
           </p>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

@@ -34,7 +34,7 @@ export function HomePage() {
   }, []);
 
   return (
-    <div className="container mx-auto px-5 md:px-5">
+    <>
       {isError && <Error msg="The data for countries is not available." />}
       {isLoading && <Loading />}
       {!isError && !isLoading && (
@@ -52,6 +52,6 @@ export function HomePage() {
           <CountryList data={filteredList} />
         </>
       )}
-    </div>
+    </>
   );
 }
