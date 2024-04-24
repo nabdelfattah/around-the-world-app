@@ -8,15 +8,14 @@ const options = [
   { value: "oceania", label: "Oceania" },
 ];
 function filterList(val, list) {
-  console.log(Array.isArray(list));
   return list.filter((obj) => {
     return obj.region === val;
   });
 }
 
-export function RegionMenue({ countriesList, filterCountries }) {
+export function RegionMenue({ countriesList, filterCountries, setIsEmpty }) {
   function selectOptionHandler(e) {
-    console.log(e.label);
+    setIsEmpty(false);
     if (e.label == "All regions") {
       filterCountries([...countriesList]);
       return;

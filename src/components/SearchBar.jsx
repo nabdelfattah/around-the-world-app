@@ -1,13 +1,13 @@
-import { useRef } from "react";
-
-export function SearchBar(props) {
-  const { fetchData } = props;
-  const searchRef = useRef();
-
+export function SearchBar({ countriesList, filterCountries, setIsEmpty }) {
   function submitHandler(e) {
     e.preventDefault();
-    if (!searchRef.current.value) return;
-    fetchData(searchRef.current.value);
+    const val = e.target.elements.search.value.toLowerCase();
+    if (!val) return;
+    const result = countriesList.filter((country) =>
+      country.name.common.toLowerCase().includes(val),
+    );
+    if (!result.length) setIsEmpty(true);
+    filterCountries(result);
   }
   return (
     <form className="relative flex-1" onSubmit={submitHandler}>
@@ -35,7 +35,6 @@ export function SearchBar(props) {
         name="search"
         className="h-12 w-full max-w-md rounded-full pl-20 shadow dark:bg-gray-800 md:h-14"
         placeholder="Search..."
-        ref={searchRef}
       />
     </form>
   );

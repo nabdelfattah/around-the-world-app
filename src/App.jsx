@@ -6,6 +6,7 @@ import {
   SearchBar,
   Loading,
   Error,
+  EmptySearch,
 } from "./components";
 
 function App() {
@@ -13,6 +14,9 @@ function App() {
   const [filteredList, setFilteredList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+
+  console.log(isEmpty);
 
   async function fetchCountriesData() {
     // while using fetch() we should handle: Error state, Loading state
@@ -27,6 +31,7 @@ function App() {
       setIsError(true);
     } finally {
       setIsLoading(false);
+      setIsEmpty(setIsEmpty);
     }
   }
 
@@ -43,13 +48,22 @@ function App() {
         {!isError && !isLoading && (
           <>
             <div className="flex flex-col justify-between gap-10 md:h-14 md:flex-row md:gap-0">
-              <SearchBar />
+              <SearchBar
+                countriesList={countriesList}
+                filterCountries={setFilteredList}
+                setIsEmpty={setIsEmpty}
+              />
               <RegionMenue
                 countriesList={countriesList}
                 filterCountries={setFilteredList}
+                setIsEmpty={setIsEmpty}
               />
             </div>
-            <CountryList data={filteredList} />
+            {isEmpty ? (
+              <EmptySearch setIsEmpry={setIsEmpty} />
+            ) : (
+              <CountryList data={filteredList} />
+            )}
           </>
         )}
       </div>
