@@ -13,9 +13,8 @@ function filterList(val, list) {
   });
 }
 
-export function RegionMenue({ countriesList, filterCountries, setIsEmpty }) {
+export function RegionMenue({ countriesList, filterCountries }) {
   function selectOptionHandler(e) {
-    setIsEmpty(false);
     if (e.label == "All regions") {
       filterCountries([...countriesList]);
       return;

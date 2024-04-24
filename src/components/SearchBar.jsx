@@ -1,4 +1,4 @@
-export function SearchBar({ countriesList, filterCountries, setIsEmpty }) {
+export function SearchBar({ countriesList, filterCountries }) {
   function submitHandler(e) {
     e.preventDefault();
     const val = e.target.elements.search.value.toLowerCase();
@@ -6,7 +6,6 @@ export function SearchBar({ countriesList, filterCountries, setIsEmpty }) {
     const result = countriesList.filter((country) =>
       country.name.common.toLowerCase().includes(val),
     );
-    if (!result.length) setIsEmpty(true);
     filterCountries(result);
   }
   return (
