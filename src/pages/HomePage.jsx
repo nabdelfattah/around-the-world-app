@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   CountryList,
   RegionMenue,
@@ -6,39 +5,18 @@ import {
   Loading,
   Error,
 } from "../components";
+import { useFetch } from "../useFetch";
 
 export function HomePage() {
-  const [countriesList, setCountriesList] = useState([]);
-  const [filteredList, setFilteredList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-
-  async function fetchCountriesData() {
-    // while using fetch() we should handle: Error state, Loading state
-    try {
-      setIsLoading(true);
-      const response = await fetch("https://restcountries.com/v3.1/all");
-      const data = await response.json();
-      setIsError(false);
-      setCountriesList(data);
-      setFilteredList(data);
-    } catch (err) {
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    fetchCountriesData();
-  }, []);
+  const { isLoading, isError, filteredList, countriesList, setFilteredList } =
+    useFetch("https://restcountries.com/v3.1/all");
 
   return (
     <>
       {isError && <Error msg="The data for countries is not available." />}
       {isLoading && <Loading />}
       {!isError && !isLoading && (
-        <>
+        <div>
           <div className="flex flex-col justify-between gap-10 md:h-14 md:flex-row md:gap-0">
             <SearchBar
               countriesList={countriesList}
@@ -50,7 +28,7 @@ export function HomePage() {
             />
           </div>
           <CountryList data={filteredList} />
-        </>
+        </div>
       )}
     </>
   );
