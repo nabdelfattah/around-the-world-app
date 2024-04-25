@@ -50,7 +50,7 @@ export function CountryPage() {
                   <h1 className="mb-4 text-3xl font-extrabold lg:mb-7">
                     {result[0]?.name?.common}
                   </h1>
-                  <div className="flex flex-col gap-8 md:gap-40 lg:flex-row">
+                  <div className="flex flex-col gap-5 md:gap-5 lg:flex-row">
                     <div className="flex flex-col gap-5">
                       <p>
                         <span className="font-semibold">Population: </span>
